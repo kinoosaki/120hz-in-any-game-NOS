@@ -5,7 +5,7 @@ As we know it, Nothing OS locks every single game to 60hz except whitelisted one
 
 I made a little [writeup](https://gist.github.com/kinoosaki/ab25f9c5c330f32b87ecbe470856e8ab) regarding this and then I rebooted my phone. It was gone. I was like...do I have to run the commands everytime I reboot (see the gist). That's not so exhilarating.
 
-So I went looking around, I'll admit I used GPT for this and it suggested something interesting: what if you use Tasker + Shizuku? I had forgotten Tasker existed. I used its help to set it up and know the fundamentals. Rest of the tinkering and polishing was all me.
+So I went looking around, I'll admit I used GPT and it suggested something interesting: what if you use Tasker + Shizuku? I had forgotten Tasker existed. I used its help to set it up and know the fundamentals. Rest of the tinkering and polishing was all me. I wrote this myself as well.
 
 It's a very nice setup, it runs Tasker + Shizuku on startup and automatically executes the relevant command for every game you've configured when you open it up. Means a reboot doesn't affect anything, it's persistent and works great. For every game that isn't working in 120hz by default, you can add it into Tasker and it will work automatically.
 
