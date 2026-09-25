@@ -5,9 +5,9 @@ As we know it, Nothing OS locks every single game to 60hz except whitelisted one
 
 I made a little [writeup](https://gist.github.com/kinoosaki/ab25f9c5c330f32b87ecbe470856e8ab) regarding this and then I rebooted my phone. Was gone. I was like...do I have to run the commands everytime I reboot (see the gist). That's not so exhilarating.
 
-So I went looking around, I'll admit I used GPT for this and it suggested something interesting: what if you use tasker + shizuku? I had forgotten tasker existed. I used its help to set it up and know the fundamentals. Rest of the tinkering and polishing was all me.
+So I went looking around, I'll admit I used GPT for this and it suggested something interesting: what if you use Tasker + Shizuku? I had forgotten Tasker existed. I used its help to set it up and know the fundamentals. Rest of the tinkering and polishing was all me.
 
-It's a very nice setup, it runs tasker + shizuku on startup and automatically executes the relevant command for every game you've configured when you open it up. Means a reboot doesn't affect anything, it's persistent and works great. For every game that isn't working in 120hz by default, you can add it into tasker and it will work automatically.
+It's a very nice setup, it runs Tasker + Shizuku on startup and automatically executes the relevant command for every game you've configured when you open it up. Means a reboot doesn't affect anything, it's persistent and works great. For every game that isn't working in 120hz by default, you can add it into Tasker and it will work automatically.
 
 <h2>1. Shizuku</h2>
 
@@ -22,7 +22,7 @@ Next, make sure these 3 are on in the settings. You can see what the rest are do
 <img width="429" height="951" alt="scrcpy_k5LjyAApIi" src="https://github.com/user-attachments/assets/2bdf560f-2184-4622-a5a6-9f8b2bd13d41" />
 
 <h2>2. Tasker</h2>
-Before we get into tasker, go to misc section in settings and turn this on. It makes life slightly easier, you won't have to tick it manually everytime you create a task for the relevant game. A prompt should come up to grant permission to tasker to use Shizuku. If not here, it should come when you make the task. Either way if you see it, give the permission!
+Before we get into Tasker, go to misc section in settings and turn this on. It makes life slightly easier, you won't have to tick it manually everytime you create a task for the relevant game. A prompt should come up to grant permission for Tasker to use Shizuku. If not here, it should come when you make the task. Either way if you see it, give the permission!
 
 <img width="429" height="951" alt="scrcpy_Y8DGA8a3gv" src="https://github.com/user-attachments/assets/2af7345b-6d95-4ef6-8c34-2ed845ed752b" />
 
@@ -54,11 +54,11 @@ Put in `cmd game set --fps 120 packagename` (`packagename` is the package name f
 
 <img width="429" height="951" alt="scrcpy_XMObMzye4h" src="https://github.com/user-attachments/assets/895c9700-29bd-4a66-b590-e9c9868258b6" />
 
-That's it! You can follow the steps in tasker for every game you want 120hz on. It will work immediately. On reboot, tasker starts automatically, shizuku starts too and a prompt will come up by Android asking you to select the network or something to turn on Shizuku, select your network and it will start up automatically.
+That's it! You can follow the steps in Tasker for every game you want 120hz on. It will work immediately. On reboot, Tasker starts automatically, Shizuku starts too and a prompt will come up by Android asking you to select the network or something to turn on Shizuku, select your network and it will start up automatically.
 
 # BONUS:
 - I use aShell You to gain access to the system shell through Shizuku.
-- That's from my gist, you can use these commands inside shell too and just not setup the whole tasker flow if you want to.
+- That's from my gist, you can use these commands inside shell too and just not setup the whole Tasker flow if you want to.
 
 1. `cmd game set --fps 120 packagename` for setting a game to 120fps.
 2. `cmd game reset packagename` to reset the override
@@ -67,4 +67,3 @@ That's it! You can follow the steps in tasker for every game you want 120hz on. 
 What's up with the 3rd one? Android saves the override in a "custom" gamemode but reverts to the "standard" (default) gamemode upon reboot. Which will set it back to 60hz. You'll have to manually change the gamemode to "custom" for it to work, or you can use the 1st command which is better because it overrides the game and also enables the custom gamemode as well. 3 can't do 1. 1 can do 3 too. It's a bit convuluted, hopefully you get it lol. This is why I just used the 1st command in the guide. It will work for newly installed games as well as well as existing ones without any fiddling around.
 
 - You can use `dumpsys game | grep -iE "package|fps|override|intervention"` to list all games installed along with their overrides.
-
