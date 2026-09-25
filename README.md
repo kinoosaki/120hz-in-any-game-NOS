@@ -52,3 +52,16 @@ Put in `cmd game set --fps 120 packagename` (`packagename` is the package name f
 <img width="429" height="951" alt="scrcpy_XMObMzye4h" src="https://github.com/user-attachments/assets/895c9700-29bd-4a66-b590-e9c9868258b6" />
 
 That's it! You can follow the steps in tasker for every game you want 120hz on. It will work immediately. On reboot, tasker starts automatically, shizuku starts too and a prompt will come up by Android asking you to select the network or something to turn on Shizuku, select your network and it will start up automatically.
+
+# BONUS:
+- I use aShell You to gain access to the system shell through Shizuku.
+- That's from my gist, you can use these commands inside shell too and just not setup the whole tasker flow if you want to.
+
+1. `cmd game set --fps 120 packagename` for setting a game to 120fps.
+2. `cmd game reset packagename` to reset the override
+3. `cmd game mode custom packagename` change gamemode (for games where you already used the 1st command, or just use the 1st command again)
+
+What's up with the 3rd one? Android saves the override in a "custom" gamemode but reverts to the "standard" (default) gamemode upon reboot. Which will set it back to 60hz. You'll have to manually change the gamemode to "custom" for it to work, or you can use the 1st command which is better because it overrides the game and also enables the custom gamemode as well. 3 can't do 1. 1 can do 3 too. It's a bit convuluted, hopefully you get it lol. This is why I just used the 1st command in the guide. It will work for newly installed games as well as well as existing ones without any fiddling around.
+
+- You can use `dumpsys game | grep -iE "package|fps|override|intervention"` to list all games installed along with their overrides.
+
