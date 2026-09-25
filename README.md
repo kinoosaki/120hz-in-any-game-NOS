@@ -30,7 +30,7 @@ Tap on the plus button you see at the bottom right, and then tap on "create" whe
 
 <img width="429" height="951" alt="scrcpy_1nH64eJVT8" src="https://github.com/user-attachments/assets/420b1fd0-365c-4ebb-998f-4939ddedc409" />
 
-Next tap on "applications"
+Next tap on "application"
 
 <img width="429" height="951" alt="scrcpy_I3xN9eaz3k" src="https://github.com/user-attachments/assets/3ab15d11-c1bd-459f-891d-10ede25c72c7" />
 
