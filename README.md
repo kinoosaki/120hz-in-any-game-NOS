@@ -3,7 +3,7 @@ the name said it, 120hz in any game in Nothing OS. This guide will explain the r
 
 As we know it, Nothing OS locks every single game to 60hz except whitelisted ones. There's games like Geometry Dash, Hill Climb Racing, Minecraft, Hatsune Miku: Colorful Stage, etc. which support 120hz but are locked to 60hz because of the FPS cap on Android's side.
 
-I made a little [writeup](https://gist.github.com/kinoosaki/ab25f9c5c330f32b87ecbe470856e8ab) regarding this and then I rebooted my phone. Was gone. I was like...do I have to run the commands everytime I reboot (see the gist). That's not so exhilarating.
+I made a little [writeup](https://gist.github.com/kinoosaki/ab25f9c5c330f32b87ecbe470856e8ab) regarding this and then I rebooted my phone. It was gone. I was like...do I have to run the commands everytime I reboot (see the gist). That's not so exhilarating.
 
 So I went looking around, I'll admit I used GPT for this and it suggested something interesting: what if you use Tasker + Shizuku? I had forgotten Tasker existed. I used its help to set it up and know the fundamentals. Rest of the tinkering and polishing was all me.
 
