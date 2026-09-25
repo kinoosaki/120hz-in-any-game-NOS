@@ -7,7 +7,9 @@ I made a little [writeup](https://gist.github.com/kinoosaki/ab25f9c5c330f32b87ec
 
 So I went looking around, I'll admit I used GPT for this and it suggested something interesting: what if you use tasker + shizuku? I had forgotten tasker existed. I used its help to set it up and know the fundamentals. Rest of the tinkering and polishing was all me.
 
-It's a very nice setup, it runs tasker + shizuku on startup and automatically executes the relevant command for every game you've configured so when you open it up. Means a reboot doesn't affect anything, it's persistent and works great. For every game that isn't working in 120hz by default, you can add it into tasker and it will work automatically.
+It's a very nice setup, it runs tasker + shizuku on startup and automatically executes the relevant command for every game you've configured when you open it up. Means a reboot doesn't affect anything, it's persistent and works great. For every game that isn't working in 120hz by default, you can add it into tasker and it will work automatically.
+
+<h2>1. Shizuku</h2>
 
 Let's start. For this I used [thedjchi's Shizuku fork](https://github.com/thedjchi/Shizuku) which has a ton of fixes and functionality over the stock Shizuku app and is the best one I have found so far.
 
@@ -19,6 +21,7 @@ Next, make sure these 3 are on in the settings. You can see what the rest are do
 
 <img width="429" height="951" alt="scrcpy_k5LjyAApIi" src="https://github.com/user-attachments/assets/2bdf560f-2184-4622-a5a6-9f8b2bd13d41" />
 
+<h2>2. Tasker</h2>
 Before we get into tasker, go to misc section in settings and turn this on. It makes life slightly easier, you won't have to tick it manually everytime you create a task for the relevant game. A prompt should come up to grant permission to tasker to use Shizuku. If not here, it should come when you make the task. Either way if you see it, give the permission!
 
 <img width="429" height="951" alt="scrcpy_Y8DGA8a3gv" src="https://github.com/user-attachments/assets/2af7345b-6d95-4ef6-8c34-2ed845ed752b" />
