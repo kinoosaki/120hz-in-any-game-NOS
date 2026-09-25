@@ -19,7 +19,7 @@ Next, make sure these 3 are on in the settings. You can see what the rest are do
 
 <img width="429" height="951" alt="scrcpy_k5LjyAApIi" src="https://github.com/user-attachments/assets/2bdf560f-2184-4622-a5a6-9f8b2bd13d41" />
 
-Before we get into tasker, go to misc section in settings and turn this on. It makes life slightly easier, you won't have to tick it manually everytime you create a task for the relevant game. I prompt should come up to grant permission to tasker to use Shizuku. If not here, it should come when you make the task. Either way if you see it, give the permission!
+Before we get into tasker, go to misc section in settings and turn this on. It makes life slightly easier, you won't have to tick it manually everytime you create a task for the relevant game. A prompt should come up to grant permission to tasker to use Shizuku. If not here, it should come when you make the task. Either way if you see it, give the permission!
 
 <img width="429" height="951" alt="scrcpy_Y8DGA8a3gv" src="https://github.com/user-attachments/assets/2af7345b-6d95-4ef6-8c34-2ed845ed752b" />
 
