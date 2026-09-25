@@ -1,4 +1,4 @@
-# 120hz-in-any-game-NOS
+# 120hz in any game in Nothing OS
 the name said it, 120hz in any game in Nothing OS. This guide will explain the relevant commands and Tasker + Shizuku automation to automate the whole process.
 
 As we know it, Nothing OS locks every single game to 60hz except whitelisted ones. There's games like Geometry Dash, Hill Climb Racing, Minecraft, Hatsune Miku: Colorful Stage, etc. which support 120hz but are locked to 60hz because of the FPS cap on Android's side.
