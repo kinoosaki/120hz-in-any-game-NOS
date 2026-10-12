@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#07112d">
+  <title>120hz in any game in Nothing OS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #171029;
+      --overlay: rgba(16, 10, 32, .66);
+      --surface: rgba(27, 19, 48, .84);
+      --tile: rgba(54, 39, 81, .88);
+      --text: #f2edff;
+      --muted: #d0c6e8;
+      --primary: #f0a17f;
+      --heading: #f4e9ff;
+      --border: rgba(192, 163, 230, .34);
+      --code: rgba(240, 161, 127, .14);
+      --shadow: 0 24px 70px rgba(0, 0, 0, .24);
+    }
+    html.light {
+      color-scheme: light;
+      --bg: #e8e0f2;
+      --overlay: rgba(238, 229, 249, .70);
+      --surface: rgba(247, 242, 252, .89);
+      --tile: rgba(224, 211, 240, .92);
+      --text: #302541;
+      --muted: #5d506f;
+      --primary: #9c4f68;
+      --heading: #492d61;
+      --border: rgba(112, 78, 143, .32);
+      --code: rgba(156, 79, 104, .12);
+      --shadow: 0 24px 70px rgba(43, 34, 62, .16);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 28px; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: 'Montserrat', system-ui, sans-serif;
+      color: var(--text);
+      background-color: var(--bg);
+      background-image: linear-gradient(var(--overlay), var(--overlay)), url('./wallhaven-w5x65p.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      line-height: 1.8;
+      transition: color .3s ease, background-color .3s ease;
+    }
+    a { color: var(--primary); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+    a:hover { color: var(--heading); }
+    .theme-toggle {
+      position: fixed; z-index: 5; top: 18px; right: 18px; width: 46px; height: 46px;
+      display: grid; place-items: center; border: 1px solid var(--border); border-radius: 50%;
+      color: var(--primary); background: var(--surface); backdrop-filter: blur(14px); cursor: pointer;
+      box-shadow: var(--shadow); font-size: 20px;
+    }
+    .shell { width: min(1120px, calc(100% - 36px)); margin: 0 auto; padding: 70px 0 72px; }
+    .hero {
+      position: relative; overflow: hidden; padding: clamp(30px, 6vw, 64px); margin-bottom: 26px;
+      border: 1px solid var(--border); border-radius: 30px; background: var(--surface);
+      backdrop-filter: blur(18px); box-shadow: var(--shadow);
+    }
+    .hero::after { content: "120"; position: absolute; right: 20px; bottom: -90px; color: var(--primary); opacity: .07; font-weight: 800; font-size: clamp(180px, 30vw, 350px); line-height: 1; pointer-events: none; }
+    h1 { position: relative; z-index: 1; max-width: 800px; margin: 0; color: var(--heading); font-size: clamp(2.1rem, 6vw, 4.2rem); line-height: 1.13; letter-spacing: -.05em; }
+    .hero p { position: relative; z-index: 1; max-width: 760px; margin: 24px 0 0; color: var(--muted); font-size: 1.02rem; }
+    .layout { display: grid; grid-template-columns: 235px minmax(0, 1fr); align-items: start; gap: 24px; }
+    .contents, .article-card { border: 1px solid var(--border); border-radius: 26px; background: var(--surface); backdrop-filter: blur(16px); box-shadow: var(--shadow); }
+    .contents { position: sticky; top: 20px; padding: 22px 18px; }
+    .contents h2 { margin: 0 0 12px; color: var(--primary); font-size: .75rem; letter-spacing: .14em; text-transform: uppercase; }
+    .contents ol { margin: 0; padding-left: 20px; color: var(--muted); font-size: .88rem; }
+    .contents li { padding: 4px 0; }
+    .contents a { color: var(--muted); text-decoration: none; }
+    .contents a:hover { color: var(--primary); }
+    .article-card { min-width: 0; padding: clamp(22px, 4vw, 48px); }
+    .article-card > p { margin: 0 0 1.35em; }
+    .article-card h2 { margin: 2.25em 0 .9em; padding-top: .7em; border-top: 1px solid var(--border); color: var(--heading); font-size: clamp(1.45rem, 3vw, 2rem); line-height: 1.35; }
+    .article-card h2:first-of-type { margin-top: 2em; }
+    .article-card h3 { color: var(--primary); }
+    .step { margin: 1.6em 0 .75em !important; color: var(--heading); }
+    code { padding: .16em .42em; border: 1px solid var(--border); border-radius: 7px; background: var(--code); color: var(--heading); font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: .91em; overflow-wrap: anywhere; }
+    .article-card ul, .article-card ol { padding-left: 1.5em; }
+    .article-card li { margin: .5em 0; }
+    .article-card img { display: block; width: min(100%, 429px); height: auto; margin: 22px auto 30px; border: 1px solid var(--border); border-radius: 20px; box-shadow: 0 18px 45px rgba(0,0,0,.26); }
+    .bonus { margin-top: 2.6em !important; }
+    @media (max-width: 760px) {
+      .shell { width: min(100% - 24px, 680px); padding-top: 72px; }
+      .layout { grid-template-columns: 1fr; }
+      .contents { position: static; }
+      .contents ol { display: flex; flex-wrap: wrap; gap: 5px 20px; }
+      .hero { border-radius: 24px; }
+      .article-card { border-radius: 22px; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+  </style>
+</head>
+<body>
+  <button class="theme-toggle" type="button" aria-label="Toggle color theme" title="Toggle color theme">☼</button>
+  <main class="shell">
+    <header class="hero">
+      <h1>120hz in any game in Nothing OS</h1>
+      <p>the name said it, 120hz in any game in Nothing OS. This guide will explain the relevant commands and Tasker + Shizuku automation to automate the whole process. Tested on Nothing OS 5.0 (Android 17).</p>
+    </header>
+    <div class="layout">
+      <nav class="contents" aria-label="Contents">
+        <h2>On this page</h2>
+        <ol>
+          <li><a href="#introduction">Introduction</a></li>
+          <li><a href="#shizuku">Shizuku</a></li>
+          <li><a href="#tasker">Tasker</a></li>
+          <li><a href="#bonus">BONUS:</a></li>
+        </ol>
+      </nav>
+      <article class="article-card">
+        <p>As we know it, Nothing OS locks every single game to 60hz except whitelisted ones. There's games like Geometry Dash, Hill Climb Racing, Minecraft, Hatsune Miku: Colorful Stage, etc. which support 120hz but are locked to 60hz because of the FPS cap on Android's side.</p>
+        <p>I made a little <a href="https://gist.github.com/kinoosaki/ab25f9c5c330f32b87ecbe470856e8ab">writeup</a> regarding this and then I rebooted my phone. It was gone. I was like...do I have to run the commands everytime I reboot (see the gist). That's not so exhilarating.</p>
+        <p>So I went looking around, I'll admit I used GPT and it suggested something interesting: what if you use Tasker + Shizuku? I had forgotten Tasker existed. I used its help to set it up and know the fundamentals. Rest of the tinkering and polishing was all me. I wrote this myself as well.</p>
+        <p>It's a very nice setup, it runs Tasker + Shizuku on startup and automatically executes the relevant command for every game you've configured when you open it up. Means a reboot doesn't affect anything, it's persistent and works great. For every game that isn't working in 120hz by default, you can add it into Tasker and it will work automatically.</p>
+
+        <h2 id="shizuku">1. Shizuku</h2>
+        <p>Let's start. For this I used <a href="https://github.com/thedjchi/Shizuku">thedjchi's Shizuku fork</a> which has a ton of fixes and functionality over the stock Shizuku app and is the best one I have found so far.</p>
+        <img width="429" height="951" alt="scrcpy_jsu2JxTdrz" src="https://github.com/user-attachments/assets/0c34a22a-b56f-4363-8daf-1293937ff73c">
+        <p>Of course, do the standard stuff like disabling battery optimizations and turn on the Shizuku service and connect with adb.</p>
+        <p>Next, make sure these 3 are on in the settings. You can see what the rest are doing. The watchdog is merely a service that just sees if Shizuku is running and notifies you accordingly, which is handy.</p>
+        <img width="429" height="951" alt="scrcpy_k5LjyAApIi" src="https://github.com/user-attachments/assets/2bdf560f-2184-4622-a5a6-9f8b2bd13d41">
+
+        <h2 id="tasker">2. Tasker</h2>
+        <p>Before we get into Tasker, go to misc section in settings and turn this on. It makes life slightly easier, you won't have to tick it manually everytime you create a task for the relevant game. A prompt should come up to grant permission for Tasker to use Shizuku. If not here, it should come when you make the task. Either way if you see it, give the permission!</p>
+        <img width="429" height="951" alt="scrcpy_Y8DGA8a3gv" src="https://github.com/user-attachments/assets/2af7345b-6d95-4ef6-8c34-2ed845ed752b">
+        <p class="step"><strong>STEP 1:</strong> Tap on the plus button you see at the bottom right, and then tap on "create" when this popup comes up. You can tap on "stop reminding" and it won't come up in the future.</p>
+        <img width="429" height="951" alt="scrcpy_1nH64eJVT8" src="https://github.com/user-attachments/assets/420b1fd0-365c-4ebb-998f-4939ddedc409">
+        <p class="step"><strong>STEP 2:</strong> Next tap on "application"</p>
+        <img width="429" height="951" alt="scrcpy_I3xN9eaz3k" src="https://github.com/user-attachments/assets/3ab15d11-c1bd-459f-891d-10ede25c72c7">
+        <p class="step"><strong>STEP 3:</strong> Tap on the game you want to run at 120hz and then go back. We're using Geometry Dash here as an example.</p>
+        <img width="429" height="951" alt="scrcpy_vL2j0WKcUK" src="https://github.com/user-attachments/assets/b7be129b-0f67-406a-8f0f-da452f755429">
+        <p class="step"><strong>STEP 4:</strong> Tap "new task" here</p>
+        <img width="429" height="951" alt="scrcpy_AxhnKxG1mJ" src="https://github.com/user-attachments/assets/d135175b-1b99-43e7-87d6-09ee4832b28e">
+        <p class="step"><strong>STEP 5:</strong> Tap on the plus button here</p>
+        <img width="429" height="951" alt="scrcpy_5qOrNgyXxX" src="https://github.com/user-attachments/assets/2c054303-5a5c-45dd-a511-b27413cf6c81">
+        <p class="step"><strong>STEP 6:</strong> (the list will be longer for you lmao as I used the search feature like you can see) Tap on "run shell" here.</p>
+        <img width="429" height="951" alt="scrcpy_U4C8p7rBuQ" src="https://github.com/user-attachments/assets/d4d22d1b-039d-408d-b16d-ea514c989568">
+        <p class="step"><strong>STEP 7:</strong> Put in <code>cmd game set --fps 120 packagename</code> (<code>packagename</code> is the package name for the game you're doing this for. You can open the app info and then scroll to the very buttom to see the package name and version) as the shell command. If you didn't tick "Shizuku in Run Shell By Default" you can turn it on here, there is an option on this page but I haven't included it in the screenshot. Something along the lines of "Shizuku in Run Shell".</p>
+        <img width="429" height="951" alt="scrcpy_XMObMzye4h" src="https://github.com/user-attachments/assets/895c9700-29bd-4a66-b590-e9c9868258b6">
+        <p>That's it! You can follow the steps in Tasker for every game you want 120hz on. It will work immediately. On reboot, Tasker starts automatically, Shizuku starts too and a prompt will come up by Android asking you to select the network or something to turn on Shizuku, select your network and it will start up automatically.</p>
+
+        <h2 class="bonus" id="bonus">BONUS:</h2>
+        <ul>
+          <li>I use aShell You to gain access to the system shell through Shizuku.</li>
+          <li>That's from my gist, you can use these commands inside shell too and just not setup the whole Tasker flow if you want to.</li>
+        </ul>
+        <ol>
+          <li><code>cmd game set --fps 120 packagename</code> for setting a game to 120fps.</li>
+          <li><code>cmd game reset packagename</code> to reset the override</li>
+          <li><code>cmd game mode custom packagename</code> change gamemode (for games where you already used the 1st command, or just use the 1st command again)</li>
+        </ol>
+        <p>What's up with the 3rd one? Android saves the override in a "custom" gamemode but reverts to the "standard" (default) gamemode upon reboot. Which will set it back to 60hz. You'll have to manually change the gamemode to "custom" for it to work, or you can use the 1st command which is better because it overrides the game and also enables the custom gamemode as well. 3 can't do 1. 1 can do 3 too. It's a bit convuluted, hopefully you get it lol. This is why I just used the 1st command in the guide. It will work for newly installed games as well as existing ones without any fiddling around.</p>
+        <ul>
+          <li>You can use <code>dumpsys game | grep -iE "package|fps|override|intervention"</code> to list all games installed along with their overrides.</li>
+        </ul>
+      </article>
+    </div>
+  </main>
+  <script>
+    const themeToggle = document.querySelector('.theme-toggle');
+    themeToggle.addEventListener('click', () => {
+      const light = document.documentElement.classList.toggle('light');
+      themeToggle.textContent = light ? '☾' : '☼';
+      themeToggle.setAttribute('aria-label', light ? 'Switch to dark theme' : 'Switch to light theme');
+    });
+  </script>
+</body>
+</html>
